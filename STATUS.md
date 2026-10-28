@@ -1,9 +1,10 @@
 # Status
 
 - State: exploratory source reconstruction; no draft records, freeze, run or result.
-- Summary classification: NEEDS_SOURCE_CLARIFICATION. Indexed description
-  identifies the video but direct video and captions were inaccessible to this
-  session; chart, exact rules and causality of examples remain unverified.
+- Summary classification: NEEDS_SOURCE_CLARIFICATION. Local supplied video and
+  captions are hashed and inspected; source rules allow discretion and a drawn
+  entry precedes the stated two-bar confirmation. An exact executable original
+  is not uniquely specified. See `explore/reconstruction.md`.
 - No market data or holdout acquired; no empirical evaluation performed.
-- Next: obtain permitted playable primary video and captions, hash retained source
-  bytes, and inspect the indicator configuration and examples at the listed times.
+- Next: specify and justify a distinct confirmation-first interpretation and
+  execution assumptions before primary implementation and freeze review.

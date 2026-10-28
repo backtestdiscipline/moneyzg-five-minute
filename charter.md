@@ -13,9 +13,9 @@ adaptation must be explicitly identified and independently justified.
 Non-goals: trading, parameter optimization, performance claims from selected
 examples, final evaluation, holdout outcome inspection, or publication now.
 Source permissions: public web pages are used only for identifying and
-interpreting the source; video, captions and market data have not been acquired.
+interpreting the source; video and captions were supplied locally and hashed; market data have not been acquired.
 Permissions to retain or share source bytes and excerpts must be established
-before acquisition or external AI sharing. Do not commit source bytes. Capture
+before further retention or external AI sharing. Do not commit source bytes. Capture
 and hash permitted original bytes before using them as evidence; record locator,
 acquisition time, access method and provenance. Search snippets below are
 unhashed secondary representations, not a preserved primary source.
