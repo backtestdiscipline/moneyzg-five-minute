@@ -1,10 +1,11 @@
 # Status
 
-- State: exploratory source reconstruction; no draft records, freeze, run or result.
-- Summary classification: NEEDS_SOURCE_CLARIFICATION. Local supplied video and
-  captions are hashed and inspected; source rules allow discretion and a drawn
-  entry precedes the stated two-bar confirmation. An exact executable original
-  is not uniquely specified. See `explore/reconstruction.md`.
+- State: exploratory; no draft records, freeze, run or result.
+- Human review distinguishes retrospective illustrations from live execution;
+  there is insufficient basis to claim the creator recommended unconfirmed trades.
+- A single confirmation-first protocol is ready for implementation review, not
+  freeze review. Quote/trade/funding source fidelity, realistic costs, liquidity,
+  inference precision, implementation and independent semantic review remain open.
 - No market data or holdout acquired; no empirical evaluation performed.
-- Next: specify and justify a distinct confirmation-first interpretation and
-  execution assumptions before primary implementation and freeze review.
+- Next: review `explore/protocol.md` and assess source and execution feasibility
+  before implementing the deterministic study and preparing freeze records.

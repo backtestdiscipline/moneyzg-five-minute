@@ -20,37 +20,10 @@ and hash permitted original bytes before using them as evidence; record locator,
 acquisition time, access method and provenance. Search snippets below are
 unhashed secondary representations, not a preserved primary source.
 
-## Prospective design outline — NOT a frozen charter
+## Prospective protocol — NOT frozen
 
-Source-derived method, exact instrument and contract, dates, signal, sizing,
-exit and confirmation are unresolved. BTCUSDT perpetuals are a candidate because
-shorts need a shortable instrument; funding, liquidation, mark/index versus last
-price and exchange rules must be modelled. Spot would need a separately justified
-shorting mechanism. Do not select either based on observed performance.
-
-Before development outcomes, specify fixed UTC development and later untouched
-holdout intervals, venue, file locators, publisher checksums, retention and
-post-freeze acquisition, plus warm-up history and partition-boundary treatment.
-No holdout outcome inspection before the final acceptance rule is frozen. Use
-verified contiguous OHLCV, validated prices, timestamps and source identity;
-assess spread, slippage, fees and funding against contemporaneous independent
-sources, not arbitrary optimistic defaults. OHLCV alone cannot establish
-executable bid/ask, intrabar ordering or liquidity. Prespecify adverse fill
-semantics and a cost sensitivity grid; same-bar stop/target collisions need a
-conservative rule or finer verified data. Record decision, order and fill times;
-a close-derived decision cannot assume an achievable fill at the same instant.
-Fix EMA seed and warm-up, equality rules, overlapping trades, pyramiding,
-funding and price gaps. No optimization of source parameters or exits.
-
-Candidate primary metric: mean net return per unit of initial risk per eligible
-trade, with explicit risk denominator, aggregation and handling of open trades.
-Specify a dependence-aware confidence interval and fixed block or HAC parameters
-before freeze; zero or negative lower confidence bound does not establish positive
-expectancy. Fix minimum sample, time coverage, power/precision rationale and
-criteria for inadequate data before seeing holdout outcomes. A positive total
-return alone is insufficient. Missing/corrupt sources, invalid data, unavailable
-execution assumptions or broken replay are technical failures, distinct from a
-valid negative or inconclusive result. A complete deterministic implementation,
-synthetic causal and execution tests, independent semantic review, platform
-integrity verification and replay must precede closure. These are design
-requirements, not a completed or accepted statistical plan.
+The single confirmation-first study interpretation, fixed candidate holdout,
+execution and inference proposal, open source-fidelity questions and review
+gates are documented in `explore/protocol.md`. These are study choices, not
+verbatim source rules. Final scientific acceptance, implementation and source
+provenance must be reviewed before freeze; no holdout outcomes may inform them.

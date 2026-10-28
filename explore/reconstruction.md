@@ -89,35 +89,26 @@ shown on the central extreme, not at the confirmation candle. A real trader stil
 needs processing and order latency after confirmation. A close and next open can
 share a timestamp without proving that next-open price was executable.
 
-- **First long (10:19–10:44; frames 10:32, 10:40, 10:45):** the green marker
-  lies at the central low. He says it appears two candles afterward, then says
-  enter at the start of the second candle. The position tool is visually anchored
-  on the second candle to the right of the marked candle. Under the stated
-  completed-two-candle rule this is one whole bar before confirmation. Frame
-  geometry and the spoken instruction both support this finding; exact exchange
-  timestamps and fill price are not visible.
-- **Second long (11:32–11:53; frames 11:44, 11:54):** he again says wait for
-  the second candle and places the entry at approximately the second candle to
-  the right of the green marker. This appears to repeat the same timing error;
-  chart zoom and cursor placement limit precision.
-- **Losing long (12:32–13:15):** counts “one, two” before placing the position
-  around the second right-hand candle (13:00–13:04). This also appears early
-  under the completed-bar interpretation; it is not evidence of profitability.
-- **First short (13:42–14:20; frames 14:10, 14:14):** he says enter on the
-  second candle; the short position tool is anchored approximately two candles
-  after the marked high. It likewise appears to precede the second right candle's
-  close. Second short (15:39–16:28) is drawn retrospectively; precise marker to
-  entry alignment is less clear and should not be claimed as independently proven.
+The first long (10:19–10:45), second long (11:32–11:54), losing long
+(12:32–13:15) and first short (13:42–14:20) are retrospective chart drawings.
+Some anchors appear near the second right-hand candle, and at 10:35–10:44 the
+narration refers to entering at its start. This leaves a possible timing ambiguity,
+not a demonstrated live execution or established look-ahead defect. Precise
+entry timing cannot be established from these drawings. The second short
+(15:39–16:28) is also retrospective. The creator explicitly says two candles
+must complete; there is insufficient basis to claim he recommends unconfirmed
+fractal trading. These examples cannot establish fills or performance.
 
-Thus RQ2 finds a material mismatch between the explicitly stated confirmation
-and at least the first illustrated entry. It does not prove the creator intended
-an unconfirmed live strategy, nor that every illustrated fill is wrong. A
-confirmation-first implementation is consistent with the verbal warning but is
-not an exact reproduction of those early chart entries; disclose this as a
-causal interpretation/adaptation. On an unfinished right bar the provisional
-predicate may be invalidated by a new extreme. After both right bars close, a
-fixed strict five-bar predicate remains stable unless input bars are revised;
-actual indicator source, equality behavior and live updates remain unverified.
+A human reviewer separately interprets the intended setup as a confirmed low
+fractal between EMA20 above and EMA50 below for longs, and the reverse high
+fractal with EMA20 below EMA50 for shorts. The reviewer regards 1.5R as common
+in the examples but not mandatory; stop adjustment and discretionary filtering
+are unresolved. This is reviewer-supplied interpretation, not new independently
+verified source material. The confirmation-first protocol is a separately labelled
+study convention, not a claim about exact creator execution. On an unfinished
+right bar a provisional predicate may be invalidated by a new extreme. After
+both right bars close, a fixed strict five-bar predicate remains stable unless
+input bars are revised; actual indicator code and tie behavior remain unverified.
 
 The checked-in synthetic tests cover strict highs and lows, t+2 availability and
 provisional invalidation. They demonstrate the mathematical case only; they do
@@ -139,9 +130,8 @@ for indicator ties, exact original rules or execution timing.
 
 RQ1: the strategy family is recoverable, but a unique exact executable strategy
 is not: discretionary target, position handling, market selection and timing,
-marker comparison, EMA seed and fills are material. RQ2: first example's entry
-conflicts with the stated completed-bar confirmation; other examples appear
-similar. RQ3/RQ4 remain unanswered. A prospective causal interpretation can be
+marker comparison, EMA seed and fills are material. RQ2: the source states confirmation; retrospective drawing placement is
+ambiguous and does not establish a live timing defect. RQ3/RQ4 remain unanswered. A prospective causal interpretation can be
 scientifically meaningful if choices are independently justified and disclosed,
 not advertised as an exact reproduction. Do not select choices from outcomes.
 
@@ -152,12 +142,8 @@ scalping engine. A study-owned evaluator, source decoder, reproducible EMA/fract
 semantics, event/fill engine, costs and inference would still be needed. OHLCV
 alone cannot establish intrabar ordering, executable bid/ask, liquidity or
 latency. A shortable instrument requires funding and contract-price semantics.
-Synthetic development of timing and execution primitives is technically feasible;
-there is not yet a sufficiently specified candidate to implement as the primary
-strategy or present for freeze review. No market or holdout data were acquired.
-
-Next gate: decide and document a single independently justified, confirmation-first
-interpretation, including target, overlap and execution choices and data
-feasibility, explicitly distinguished from the retrospective examples. Then
-implement and test on synthetic fixtures before prospective freeze review; the
-acceptance criterion and holdout must be defined before any holdout outcomes.
+A proposed deterministic interpretation and protocol is now in
+`protocol.md`. It is ready for implementation review, not freeze review: source
+availability and completeness of historical quotes and funding, realistic costs,
+statistical adequacy and implementation/verification remain to be established.
+No market or holdout data were acquired.
