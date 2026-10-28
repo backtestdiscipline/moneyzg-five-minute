@@ -1,11 +1,11 @@
 # Status
 
 - State: exploratory; no draft records, freeze, run or result.
-- Human review distinguishes retrospective illustrations from live execution;
-  there is insufficient basis to claim the creator recommended unconfirmed trades.
-- A single confirmation-first protocol is ready for implementation review, not
-  freeze review. Quote/trade/funding source fidelity, realistic costs, liquidity,
-  inference precision, implementation and independent semantic review remain open.
-- No market data or holdout acquired; no empirical evaluation performed.
-- Next: review `explore/protocol.md` and assess source and execution feasibility
-  before implementing the deterministic study and preparing freeze records.
+- Feasibility classification: BLOCKED_BY_DATA. Archived quotes may support a
+  shorter historical interpretation, but coverage, one-BTC liquidity, funding
+  marks, permissions and statistical adequacy remain unresolved. The proposed
+  2027 quote holdout and 365-day protocol cannot be silently replaced.
+- Bounded May 2023 development samples were checked; no holdout files or
+  strategy outcomes were acquired or inspected. See `explore/data-feasibility.md`.
+- Next: operator review of the data findings and possible explicit protocol
+  amendment before implementation or freeze.
