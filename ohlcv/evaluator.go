@@ -19,7 +19,7 @@ type Bar struct {
 	Open, High, Low, Close, Volume float64
 }
 
-// Funding is charged at a bar's open before exit or entry, only to an existing position.
+// Funding retains the source timestamp in milliseconds.
 type Funding struct {
 	Time       int64
 	Rate, Mark float64
@@ -29,7 +29,7 @@ type Trade struct {
 	EntryTime, ExitTime                           int64
 	Entry, Exit, Stop, Target, Risk               float64
 	GrossR, NetR, Fees, SlippageCost, FundingCost float64
-	Ambiguous                                     bool
+	Ambiguous, FundingAmbiguous                   bool
 	ExitReason                                    string
 }
 type Result struct {
@@ -67,13 +67,14 @@ func Evaluate(bars []Bar, funding []Funding, start, end int64) (Result, error) {
 	const settlement int64 = 8 * 60 * 60 * 1000
 	funds := make(map[int64]Funding)
 	for _, f := range funding {
-		if f.Time < start || f.Time >= end || f.Time%settlement != 0 || !finite(f.Rate) || !finite(f.Mark) || f.Mark <= 0 {
+		if f.Time < start || f.Time >= end || f.Time%settlement > 1000 || !finite(f.Rate) || !finite(f.Mark) || f.Mark <= 0 {
 			return out, fmt.Errorf("invalid funding")
 		}
-		if _, ok := funds[f.Time]; ok {
+		nominal := f.Time - f.Time%settlement
+		if _, ok := funds[nominal]; ok {
 			return out, fmt.Errorf("duplicate funding")
 		}
-		funds[f.Time] = f
+		funds[nominal] = f
 	}
 	first := start
 	if r := first % settlement; r != 0 {
@@ -98,9 +99,17 @@ func Evaluate(bars []Bar, funding []Funding, start, end int64) (Result, error) {
 		if i < Warmup {
 			continue
 		}
+		f, hasFunding := funds[b.Time]
+		// Exact-timestamp ties use existing exposure before open exits or entries.
+		if pos != nil && hasFunding && f.Time == b.Time {
+			pos.funding += float64(pos.trade.Direction) * f.Rate * f.Mark
+		}
+		// A position already open can exit at the open before a later funding event.
 		if pos != nil {
-			if f, ok := funds[b.Time]; ok {
-				pos.funding += float64(pos.trade.Direction) * f.Rate * f.Mark
+			if raw, reason, amb, ok := openExit(b, pos.trade); ok {
+				finish(&pos.trade, pos.rawEntry, raw, pos.funding, b.Time, reason, amb)
+				out.Trades = append(out.Trades, pos.trade)
+				pos = nil
 			}
 		}
 		if pending != nil {
@@ -114,7 +123,23 @@ func Evaluate(bars []Bar, funding []Funding, start, end int64) (Result, error) {
 			pending = nil
 		}
 		if pos != nil {
-			if raw, reason, amb, ok := exit(b, pos.trade); ok {
+			if raw, reason, amb, ok := openExit(b, pos.trade); ok {
+				finish(&pos.trade, pos.rawEntry, raw, pos.funding, b.Time, reason, amb)
+				out.Trades = append(out.Trades, pos.trade)
+				pos = nil
+			}
+		}
+		if pos != nil {
+			raw, reason, amb, ok := exit(b, pos.trade)
+			if hasFunding && f.Time > b.Time {
+				charge := float64(pos.trade.Direction) * f.Rate * f.Mark
+				// If an intrabar exit and settlement coexist, order is unknown.
+				// Select the adverse funding outcome, and disclose ambiguity.
+				cost, ambiguous := fundingOutcome(charge, ok)
+				pos.trade.FundingAmbiguous = ambiguous
+				pos.funding += cost
+			}
+			if ok {
 				finish(&pos.trade, pos.rawEntry, raw, pos.funding, b.Time, reason, amb)
 				out.Trades = append(out.Trades, pos.trade)
 				if amb {
@@ -172,6 +197,36 @@ func enter(b Bar, s signal) *position {
 		return nil
 	}
 	return &position{trade: Trade{Direction: s.dir, EntryTime: b.Time, Entry: price, Stop: s.stop, Target: target, Risk: risk}, rawEntry: b.Open}
+}
+
+func fundingOutcome(charge float64, intrabarExit bool) (float64, bool) {
+	if !intrabarExit {
+		return charge, false
+	}
+	if charge > 0 {
+		return charge, true
+	}
+	return 0, true
+}
+
+// openExit tests only the observed opening price.
+func openExit(b Bar, t Trade) (float64, string, bool, bool) {
+	if t.Direction == 1 {
+		if b.Open <= t.Stop {
+			return b.Open, "stop", false, true
+		}
+		if b.Open >= t.Target {
+			return t.Target, "target", false, true
+		}
+	} else {
+		if b.Open >= t.Stop {
+			return b.Open, "stop", false, true
+		}
+		if b.Open <= t.Target {
+			return t.Target, "target", false, true
+		}
+	}
+	return 0, "", false, false
 }
 
 // Price at an opening gap is used for stop gaps; targets receive no gap improvement.

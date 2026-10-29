@@ -1,10 +1,14 @@
 # Status
 
-- State: exploratory; no frozen records, run or result. Operator accepted the
-  simplified OHLCV model as intended scope, subject to its limitations.
-- 2024 development and 2025 historical holdout proposed, with a reserved
-  500-bar warm-up. No holdout data or strategy outcomes acquired or inspected.
-- Publication rights and REST applicability remain unresolved. A bounded 2024
-  funding API sample includes marks but reveals +1 ms timestamps rejected by
-  the current evaluator; boundary semantics need a reviewed policy.
-- Stop before further integration or freeze review. See `explore/data-decision.md`.
+- State: exploratory; no frozen records, holdout acquisition, sealed run or result.
+- Operator approved noncommercial development data and OHLCV scope. Development
+  candles and funding are hash-bound in `provenance/development.json` and passed
+  continuity checks; 2025 holdout and its warm-up remain untouched.
+- Conservative funding event handling, exploratory ingestion and bootstrap are
+  implemented. Independent review found further testing and inference work;
+  diagnostics are recorded in `explore/development-evidence.md`.
+- Implementation remains incomplete: bootstrap dependence/coverage validation,
+  complete reporting, independent semantic replay and platform freeze records
+  remain. Publication-specific license and attribution review is required later.
+- Next: finish and independently verify inference and reporting, then prepare the
+  freeze review; obtain explicit approval before freeze or holdout acquisition.

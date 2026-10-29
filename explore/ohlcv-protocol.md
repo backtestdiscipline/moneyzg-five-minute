@@ -41,10 +41,11 @@ spot 1h sources are not the same instrument or timeframe. The available May
 sample lacks a verified 500-bar warm-up and settlement marks; no development
 strategy diagnostics were run.
 
-Candidate development `[2024-01-01T00:00Z, 2024-12-30T06:20Z)` and
+Candidate development `[2024-01-01T00:00Z, 2024-12-30T00:00Z)` and
 holdout `[2025-01-01T00:00Z, 2026-01-01T00:00Z)` are selected without
 reviewing strategy returns. The 500-bar holdout warm-up begins 2024-12-30
-06:20 UTC and is reserved, unacquired and excluded from development; the
+06:20 UTC and is reserved, unacquired and excluded from development; the unused 6h20m
+gap permits daily file isolation without acquiring reserved bars. The
 development warm-up begins 2023-12-30 06:20 UTC. Reserve holdout and its
 warm-up as post-freeze sources; acquire and bind them only after freeze.
 This is a completed historical interval reserved prospectively to the freeze,
@@ -54,13 +55,9 @@ The change from the previous 2027 proposal is documented in `data-decision.md`.
 No missing, duplicate or invalid bars are filled. Publisher sidecars and local
 hashes prove byte identity, not correctness of market data.
 
-The Binance Vision dataset terms describe generally CC BY-NC-SA 4.0, noncommercial
-research permissions and a separate license for commercial use:
-https://github.com/binance/binance-public-data/blob/master/TERMS_AND_CONDITIONS.md.
-A potentially commercial Backtest Discipline article and derived results need a
-rights determination before using this source for a publishable study. No claim
-is made that publication is permitted or prohibited in this particular case.
-An alternative source is not silently selected.
+The operator approved noncommercial research under Binance Vision Dataset Terms
+v1.0 (last updated 2026-08-26). See `development-evidence.md` for attribution,
+share-alike and publication checks and unresolved applicability of REST terms.
 
 ## Rules implemented in `ohlcv/evaluator.go`
 
@@ -68,7 +65,8 @@ Inputs are exactly 500 contiguous 5m warm-up bars followed by complete contiguou
 bars in `[start,end)`, plus all 8-hour settlement rate/mark records inside that
 interval. Bar timestamps are UTC milliseconds at open; prices must be finite and
 positive, high/low contain open and close, volume finite and nonnegative. No
-interpolation. Funding records are unique, aligned, finite and positive in mark;
+interpolation. Funding records are unique, within 0–1000 ms after nominal 8h boundaries,
+finite and positive in mark;
 a missing or invalid input returns an error. Upstream ingestion must verify
 source bytes, close-time convention, warm-up, final bar coverage, data rights,
 settlement intervals and the contract. The evaluator accepts typed records; it is
@@ -103,13 +101,21 @@ stop first. Otherwise fill at the touched stop or target level. Every exit is
 then shifted adversely by 2 bp. These are price proxies, not observed actual
 fills; gaps within a candle may be worse than the model. Charge taker fee 5 bp
 of slipped notional on each entry and exit. Fees and slippage are predeclared
-scenarios, not proven historical rates or conservative bounds. Funding at an
-8-hour candle open is charged to positions already open before exit or entry at
-that boundary; no funding on a new position at that boundary. Signed funding is
-rate × settlement mark × direction × one BTC. Binance documents deviations in actual settlement processing, and a small
-2024 API sample contained timestamps 1 ms after the nominal boundary. The
-current evaluator rejects those records: a reviewed mapping and boundary policy
-is required before integration; see `data-decision.md`.
+scenarios, not proven historical rates or conservative bounds. Funding retains
+the API timestamp. Exactly at a bar open, charge existing exposure before open
+exit/entry. After open, an opening-gap exit precedes funding and a new entry
+precedes the event. If a later funding event and an intrabar exit coexist, the
+OHLC path cannot order them: choose the more adverse funding outcome (pay a
+positive charge; forgo a credit) and mark the trade funding-ambiguous. Otherwise
+apply the signed rate × mark × direction × one BTC for an open position. A
+funding timestamp must be 0–1000 ms after each expected 8h boundary, with exactly
+one event per boundary; the original timestamp is preserved. Missing, duplicate,
+off-window or irregular events fail closed. This tolerance is a study validation
+convention, not exchange proof. Binance notes up to 15 seconds variation in
+actual funding processing; position-at-settlement ambiguity remains an explicit
+limitation and needs independent review. `ExitTime` is an exit-candle identifier,
+not an observed instant. See `development-evidence.md`.
+
 
 Gross R is direction × (raw exit proxy minus raw open proxy) divided by initial
 risk; net R uses slipped entry/exit, minus both fees and signed funding, divided
@@ -157,10 +163,10 @@ Robustness findings should not be selected or tuned from holdout results.
 ## Freeze review blockers
 
 The signal/execution core and synthetic tests are exploratory, not a complete
-study: source permissions and historical contract/fee/funding semantics must be
-resolved; data acquisition/decoder and publisher checksum validation, platform
-manifest and post-freeze bindings, reporting, inference, deterministic semantic
-verification and independent review are still needed. Verify interval coverage
+study: platform manifest and post-freeze bindings, complete result reporting,
+bootstrap statistical validation, deterministic semantic verification and final
+independent review remain. REST applicability, historical contract/fee/funding
+semantics and publication-specific licensing checks remain open. Verify interval coverage
 and full source rights, and independently justify cost assumptions and inference
 precision. Only then prepare and review platform draft records and final
 acceptance rule. No freeze or holdout evaluation is authorized now. A valid

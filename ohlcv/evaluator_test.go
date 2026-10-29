@@ -159,7 +159,51 @@ func TestOffGridFundingTimestampFailsClosed(t *testing.T) {
 	for i := range bars {
 		bars[i] = Bar{Time: start + int64(i-Warmup)*Interval, Open: 100, High: 101, Low: 99, Close: 100, Volume: 1}
 	}
-	if _, err := Evaluate(bars, []Funding{{Time: start + 1, Rate: 0.001, Mark: 100}}, start, start+Interval); err == nil {
-		t.Fatal("off-grid funding timestamp must not be silently rounded")
+	if _, err := Evaluate(bars, []Funding{{Time: start + 1001, Rate: 0.001, Mark: 100}}, start, start+Interval); err == nil {
+		t.Fatal("outside-tolerance funding timestamp must not be accepted")
+	}
+}
+
+func TestFundingAmbiguityUsesAdverseOutcome(t *testing.T) {
+	for _, tc := range []struct {
+		charge    float64
+		exit      bool
+		want      float64
+		ambiguous bool
+	}{{2, true, 2, true}, {-2, true, 0, true}, {-2, false, -2, false}, {2, false, 2, false}} {
+		got, amb := fundingOutcome(tc.charge, tc.exit)
+		if got != tc.want || amb != tc.ambiguous {
+			t.Fatalf("case %+v got %v %v", tc, got, amb)
+		}
+	}
+}
+
+func TestFundingAtEntryBoundaryAndIntrabarExit(t *testing.T) {
+	const settlement int64 = 86400000
+	start := settlement - 5*Interval
+	n := Warmup + 7
+	bars := make([]Bar, n)
+	for i := range bars {
+		c := 100 + float64(i)*0.1
+		bars[i] = Bar{Time: start + int64(i-Warmup)*Interval, Open: c, High: c + 0.1, Low: c - 0.1, Close: c, Volume: 1}
+	}
+	p := Warmup + 2
+	bars[p].Low = bars[p].Close - 1.5
+	entry := p + 3
+	bars[entry].High = bars[entry].Close + 10
+	end := start + int64(n-Warmup)*Interval
+	exact, err := Evaluate(bars, []Funding{{Time: settlement, Rate: 0.001, Mark: 100}}, start, end)
+	if err != nil {
+		t.Fatal(err)
+	}
+	later, err := Evaluate(bars, []Funding{{Time: settlement + 1, Rate: 0.001, Mark: 100}}, start, end)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(exact.Trades) != 1 || len(later.Trades) != 1 {
+		t.Fatalf("unexpected trades %d %d", len(exact.Trades), len(later.Trades))
+	}
+	if exact.Trades[0].FundingCost != 0 || !near(later.Trades[0].FundingCost, 0.1) || !later.Trades[0].FundingAmbiguous {
+		t.Fatalf("exact %+v later %+v", exact.Trades[0], later.Trades[0])
 	}
 }
