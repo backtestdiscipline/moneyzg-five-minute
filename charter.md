@@ -13,7 +13,7 @@ adaptation must be explicitly identified and independently justified.
 Non-goals: trading, parameter optimization, performance claims from selected
 examples, final evaluation, holdout outcome inspection, or publication now.
 Source permissions: public web pages are used only for identifying and
-interpreting the source; video and captions were supplied locally and hashed; market data have not been acquired.
+interpreting the source; video and captions were supplied locally and hashed; bounded May 2023 development market samples were acquired and verified as documented in `explore/data-feasibility.md`. No holdout data were acquired.
 Permissions to retain or share source bytes and excerpts must be established
 before further retention or external AI sharing. Do not commit source bytes. Capture
 and hash permitted original bytes before using them as evidence; record locator,
@@ -24,6 +24,6 @@ unhashed secondary representations, not a preserved primary source.
 
 The single confirmation-first study interpretation, fixed candidate holdout,
 execution and inference proposal, open source-fidelity questions and review
-gates are documented in `explore/protocol.md`. These are study choices, not
+gates are documented in `explore/ohlcv-protocol.md`. These are study choices, not
 verbatim source rules. Final scientific acceptance, implementation and source
 provenance must be reviewed before freeze; no holdout outcomes may inform them.

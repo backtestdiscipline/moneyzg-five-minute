@@ -1,11 +1,12 @@
 # Status
 
-- State: exploratory; no draft records, freeze, run or result.
-- Feasibility classification: BLOCKED_BY_DATA. Archived quotes may support a
-  shorter historical interpretation, but coverage, one-BTC liquidity, funding
-  marks, permissions and statistical adequacy remain unresolved. The proposed
-  2027 quote holdout and 365-day protocol cannot be silently replaced.
-- Bounded May 2023 development samples were checked; no holdout files or
-  strategy outcomes were acquired or inspected. See `explore/data-feasibility.md`.
-- Next: operator review of the data findings and possible explicit protocol
-  amendment before implementation or freeze.
+- State: exploratory, no frozen records, run or result. The operator authorized a
+  lower-fidelity OHLCV interpretation; the prior quote model and data findings
+  remain documented, never frozen.
+- Study-local signal and candle execution core is implemented and synthetically
+  tested; it is not yet a data decoder, statistical evaluator or platform run.
+- Freeze is blocked by source publication rights, contract/fee/funding evidence,
+  data coverage, inference validation and unfinished semantic verification.
+- No holdout acquired or inspected. No development performance diagnostic run.
+- Next: resolve data rights and settlement-mark availability, then complete and
+  independently review ingestion, inference and freeze records.

@@ -1,3 +1,7 @@
+> Historical quote-level proposal, superseded by operator decision. It was never frozen.
+> The current OHLCV freeze proposal is `ohlcv-protocol.md`; the feasibility
+> findings in `data-feasibility.md` are retained unchanged.
+
 # Proposed confirmation-first protocol — implementation review only
 
 This is ONE fixed interpretation for independent testing, not the creator's exact
