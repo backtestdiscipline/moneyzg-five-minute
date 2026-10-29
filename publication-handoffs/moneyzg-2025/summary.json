@@ -1,0 +1,62 @@
+{
+  "version": "moneyzg-publication-summary/v1",
+  "run_id": "20261029T132412Z-59e969df48e1",
+  "outcome": "COMPLETE",
+  "classification": "NEGATIVE_EXPECTANCY_SUPPORTED",
+  "holdout": {
+    "start_utc": "2025-01-01T00:00:00Z",
+    "end_exclusive_utc": "2026-01-01T00:00:00Z",
+    "warmup_bars": 500,
+    "evaluation_days": 365,
+    "trades": 1833,
+    "longs": 938,
+    "shorts": 895,
+    "wins": 645,
+    "win_rate_fraction": 0.3518821603927987,
+    "gross_mean_r": 0.008310216841833465,
+    "net_mean_r": -0.6632328325799263,
+    "interval_95_low_r": -0.7832039347987986,
+    "interval_95_high_r": -0.543261730361054,
+    "fees_usdt_one_btc": 185701.2861645111,
+    "slippage_usdt_one_btc": 74280.51524689488,
+    "funding_usdt_one_btc": 38.35497200279997,
+    "fees_mean_r": 0.47936064286613667,
+    "slippage_mean_r": 0.191744257478863,
+    "funding_mean_r": 0.0004381490767814052,
+    "stops": 1164,
+    "targets": 669,
+    "gap_stops": 0,
+    "ambiguous_trades": 3,
+    "funding_ambiguous_trades": 10,
+    "open_position": false,
+    "exit_days": 355,
+    "batch_trade_counts": [
+      383,
+      371,
+      359,
+      346,
+      374
+    ]
+  },
+  "development": {
+    "label": "exploratory; not holdout",
+    "trades": 1959,
+    "mean_net_r": -0.57728261,
+    "source": "explore/development-evidence.md"
+  },
+  "evidence_sha256": {
+    "specification": "14d326cf92bb92fefd5ef65fcaa6fe8e074aeea75aca3f9073df86ad1b44697c",
+    "manifest": "0f4845638d598fa41507b605b2e9450e2134011d6e0dfd618dc68e377872a7c6",
+    "freeze": "10d9f672f67cb469f7e776fa9aaad13930abc8ca7657654cba02c8c3f4d5a0c5",
+    "result": "4ead222258da57befb7f662230d24706c17177940f5484f0f81ced2c918eca84",
+    "semantic_verification": "c1c9806cc23b39485fb209bf7ec4d490fbf4470396f12285b3fd017316c25933",
+    "seal": "bb2297ac355a1c2727077fd9232a70cbabcc408fba90e854a22d2c075f94c463",
+    "execution_plan": "10ab05482c55564b861b53737862b10507cb361886e9cf2ed7fece787b4ee8f0",
+    "holdout_acquisition_provenance": "6dc33875ee7e5f840fd400d3b5bbeb23bb3fcce84d511e5e50fc1458a4eba650"
+  },
+  "verification": {
+    "platform_integrity": "PASS",
+    "independent_ledger_and_inference": "PASS",
+    "summary_helper_independent": false
+  }
+}

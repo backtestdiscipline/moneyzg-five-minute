@@ -1,0 +1,42 @@
+{
+  "version": "moneyzg-publication-release/v1",
+  "status": "internal_handoff_pending_rights_clearance",
+  "release_scope": "Only the files explicitly listed, after case-specific source and artifact rights review; no repository-wide grant.",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "e49634287ca2b866348392fc072553a6a94c53c47e856cd76f7e2b676003babc",
+      "size_bytes": 5569,
+      "release": "conditional_on_source_rights_and_attribution_review",
+      "contains_raw_provider_data": false
+    },
+    {
+      "path": "summary.json",
+      "sha256": "3cb286e639565ccad61b396c132511f4a6cd76a4824ac0c1e6ce65306827f93b",
+      "size_bytes": 2201,
+      "release": "conditional_on_source_rights_and_attribution_review",
+      "contains_raw_provider_data": false
+    },
+    {
+      "path": "chart-data.csv",
+      "sha256": "d4af2ce1f6f9517be7f2979823975a9d5f53573cd67b2bd2fede9c739bcb61da",
+      "size_bytes": 390,
+      "release": "conditional_on_source_rights_and_attribution_review",
+      "contains_raw_provider_data": false
+    },
+    {
+      "path": "licensing.md",
+      "sha256": "292f3b7d96ec143a206dcd89e6db0abd42be9e2253d941932ee13982b4528612",
+      "size_bytes": 4389,
+      "release": "conditional_on_source_rights_and_attribution_review",
+      "contains_raw_provider_data": false
+    }
+  ],
+  "excluded": [
+    "raw market archives and funding responses",
+    "video and transcript",
+    "complete trade ledger",
+    "full platform records",
+    "all other repository files"
+  ]
+}

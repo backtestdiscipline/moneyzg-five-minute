@@ -1,0 +1,9 @@
+sample,metric,value,unit
+development,mean_net_r,-0.57728261,R/trade
+holdout,gross_mean_r,0.008310216841833465,R/trade
+holdout,fees,-0.47936064286613667,R/trade
+holdout,slippage,-0.191744257478863,R/trade
+holdout,funding,-0.0004381490767814052,R/trade
+holdout,net_mean_r,-0.6632328325799263,R/trade
+holdout,ci_95_low,-0.7832039347987986,R/trade
+holdout,ci_95_high,-0.543261730361054,R/trade
