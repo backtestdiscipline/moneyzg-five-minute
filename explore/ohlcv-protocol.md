@@ -41,16 +41,18 @@ spot 1h sources are not the same instrument or timeframe. The available May
 sample lacks a verified 500-bar warm-up and settlement marks; no development
 strategy diagnostics were run.
 
-Candidate development `[2025-01-01, 2026-01-01)` and holdout `[2027-01-01,
-2028-01-01)` UTC are specified without reviewing returns. At least 500 previous
-5m candles per partition are needed as warm-up; they are not traded. Holdout and
-its warm-up must remain unacquired until after freeze and declared `post_freeze`.
-Freeze must precede the 2027 interval and any holdout acquisition; if that is
-impossible, choose a new future year on calendar availability alone in a new
-proposal. No missing, duplicate or invalid bars are filled. Exact source
-availability and completeness must be demonstrated before freeze without
-acquiring holdout bytes. Publisher sidecars and local hashes prove byte identity,
-not correctness of the market data or of the historical exchange.
+Candidate development `[2024-01-01T00:00Z, 2024-12-30T06:20Z)` and
+holdout `[2025-01-01T00:00Z, 2026-01-01T00:00Z)` are selected without
+reviewing strategy returns. The 500-bar holdout warm-up begins 2024-12-30
+06:20 UTC and is reserved, unacquired and excluded from development; the
+development warm-up begins 2023-12-30 06:20 UTC. Reserve holdout and its
+warm-up as post-freeze sources; acquire and bind them only after freeze.
+This is a completed historical interval reserved prospectively to the freeze,
+not a calendar-prospective test. Public archive HEADs returned 200 for all 2024
+and 2025 monthly candle files but do not prove quality or complete coverage.
+The change from the previous 2027 proposal is documented in `data-decision.md`.
+No missing, duplicate or invalid bars are filled. Publisher sidecars and local
+hashes prove byte identity, not correctness of market data.
 
 The Binance Vision dataset terms describe generally CC BY-NC-SA 4.0, noncommercial
 research permissions and a separate license for commercial use:
@@ -104,8 +106,10 @@ of slipped notional on each entry and exit. Fees and slippage are predeclared
 scenarios, not proven historical rates or conservative bounds. Funding at an
 8-hour candle open is charged to positions already open before exit or entry at
 that boundary; no funding on a new position at that boundary. Signed funding is
-rate × settlement mark × direction × one BTC. Real settlement ordering and mark
-availability need validation.
+rate × settlement mark × direction × one BTC. Binance documents deviations in actual settlement processing, and a small
+2024 API sample contained timestamps 1 ms after the nominal boundary. The
+current evaluator rejects those records: a reviewed mapping and boundary policy
+is required before integration; see `data-decision.md`.
 
 Gross R is direction × (raw exit proxy minus raw open proxy) divided by initial
 risk; net R uses slipped entry/exit, minus both fees and signed funding, divided

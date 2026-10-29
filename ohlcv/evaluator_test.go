@@ -152,3 +152,14 @@ func TestEndToEndEntryOverlapAndNoFutureLeak(t *testing.T) {
 		t.Fatalf("boundary not incomplete: %+v", partial)
 	}
 }
+
+func TestOffGridFundingTimestampFailsClosed(t *testing.T) {
+	start := int64(86400000)
+	bars := make([]Bar, Warmup+1)
+	for i := range bars {
+		bars[i] = Bar{Time: start + int64(i-Warmup)*Interval, Open: 100, High: 101, Low: 99, Close: 100, Volume: 1}
+	}
+	if _, err := Evaluate(bars, []Funding{{Time: start + 1, Rate: 0.001, Mark: 100}}, start, start+Interval); err == nil {
+		t.Fatal("off-grid funding timestamp must not be silently rounded")
+	}
+}

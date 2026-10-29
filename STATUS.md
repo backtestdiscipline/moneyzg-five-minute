@@ -1,12 +1,10 @@
 # Status
 
-- State: exploratory, no frozen records, run or result. The operator authorized a
-  lower-fidelity OHLCV interpretation; the prior quote model and data findings
-  remain documented, never frozen.
-- Study-local signal and candle execution core is implemented and synthetically
-  tested; it is not yet a data decoder, statistical evaluator or platform run.
-- Freeze is blocked by source publication rights, contract/fee/funding evidence,
-  data coverage, inference validation and unfinished semantic verification.
-- No holdout acquired or inspected. No development performance diagnostic run.
-- Next: resolve data rights and settlement-mark availability, then complete and
-  independently review ingestion, inference and freeze records.
+- State: exploratory; no frozen records, run or result. Operator accepted the
+  simplified OHLCV model as intended scope, subject to its limitations.
+- 2024 development and 2025 historical holdout proposed, with a reserved
+  500-bar warm-up. No holdout data or strategy outcomes acquired or inspected.
+- Publication rights and REST applicability remain unresolved. A bounded 2024
+  funding API sample includes marks but reveals +1 ms timestamps rejected by
+  the current evaluator; boundary semantics need a reviewed policy.
+- Stop before further integration or freeze review. See `explore/data-decision.md`.
