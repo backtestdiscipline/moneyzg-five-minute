@@ -1,14 +1,13 @@
 # Status
 
-- State: exploratory; no frozen records, holdout acquisition, sealed run or result.
-- Operator approved noncommercial development data and OHLCV scope. Development
-  candles and funding are hash-bound in `provenance/development.json` and passed
-  continuity checks; 2025 holdout and its warm-up remain untouched.
-- Conservative funding event handling, exploratory ingestion and bootstrap are
-  implemented. Independent review found further testing and inference work;
-  diagnostics are recorded in `explore/development-evidence.md`.
-- Implementation remains incomplete: bootstrap dependence/coverage validation,
-  complete reporting, independent semantic replay and platform freeze records
-  remain. Publication-specific license and attribution review is required later.
-- Next: finish and independently verify inference and reporting, then prepare the
-  freeze review; obtain explicit approval before freeze or holdout acquisition.
+- State: exploratory with blocked draft platform records; no freeze, holdout
+  acquisition, sealed run or result.
+- Independent reconstruction reconciled all 1,959 development trades. A
+  funding-ambiguity flag defect was fixed; development P&L was unchanged.
+- Classification: STATISTICAL_VALIDATION_FAILED. Synthetic persistent dependence
+  exposed substantial undercoverage in the proposed seven-day bootstrap.
+- Platform manifest and spec are drafts only; holdout sources are post-freeze
+  declarations and remain absent. Platform execution and semantic replay remain
+  unimplemented. See `explore/final-development-audit.md`.
+- Next: redesign and independently validate inference and complete the study's
+  platform run/verification integration before seeking freeze approval.

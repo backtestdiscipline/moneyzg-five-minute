@@ -14,9 +14,12 @@ type Daily struct {
 type Interval95 struct{ Low, High float64 }
 
 // Bootstrap uses seven-day circular blocks, SplitMix64 and nearest ranks.
-func Bootstrap(days []Daily) (Interval95, error) {
+func Bootstrap(days []Daily) (Interval95, error) { return BootstrapBlocks(days, 7) }
+
+// BootstrapBlocks is a predeclared descriptive sensitivity; the primary uses 7.
+func BootstrapBlocks(days []Daily, block int) (Interval95, error) {
 	n := len(days)
-	if n < 7 {
+	if block <= 0 || n < block {
 		return Interval95{}, fmt.Errorf("insufficient days")
 	}
 	for _, d := range days {
@@ -45,7 +48,7 @@ func Bootstrap(days []Daily) (Interval95, error) {
 				x = next()
 			}
 			start := int(x % bound)
-			for j := 0; j < 7 && used < n; j++ {
+			for j := 0; j < block && used < n; j++ {
 				d := days[(start+j)%n]
 				sum += d.Net
 				count += d.Count

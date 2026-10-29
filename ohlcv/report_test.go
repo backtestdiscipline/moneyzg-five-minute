@@ -41,3 +41,18 @@ func TestBootstrapRejectsInconsistentDailyAggregate(t *testing.T) {
 		t.Fatal("nonzero R with no trades accepted")
 	}
 }
+func TestBootstrapBlockSensitivityValidation(t *testing.T) {
+	d := make([]Daily, 14)
+	for i := range d {
+		d[i] = Daily{Net: 1, Count: 1}
+	}
+	for _, b := range []int{3, 7, 14} {
+		ci, e := BootstrapBlocks(d, b)
+		if e != nil || ci.Low != 1 || ci.High != 1 {
+			t.Fatal(b, ci, e)
+		}
+	}
+	if _, e := BootstrapBlocks(d, 15); e == nil {
+		t.Fatal("block exceeds series")
+	}
+}

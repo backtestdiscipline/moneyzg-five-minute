@@ -207,3 +207,12 @@ func TestFundingAtEntryBoundaryAndIntrabarExit(t *testing.T) {
 		t.Fatalf("exact %+v later %+v", exact.Trades[0], later.Trades[0])
 	}
 }
+
+func TestFundingAmbiguityPersistsAcrossSettlements(t *testing.T) {
+	p := &position{}
+	applyFunding(p, 1, true)
+	applyFunding(p, -0.2, false)
+	if !p.trade.FundingAmbiguous || !near(p.funding, 0.8) {
+		t.Fatalf("lost prior ambiguity: %+v", p)
+	}
+}

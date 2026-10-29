@@ -10,6 +10,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"math"
 	"moneyzg-five-minute/ohlcv"
 	"os"
 	"path/filepath"
@@ -71,13 +72,14 @@ func archiveWindow(name string) (int64, int64, error) {
 func number(s string) (float64, error) { return strconv.ParseFloat(s, 64) }
 func main() {
 	dir := flag.String("data", "data/development", "verified development input directory")
+	ledger := flag.String("ledger", "", "optional exploratory JSON ledger path")
 	flag.Parse()
-	if e := run(*dir); e != nil {
+	if e := run(*dir, *ledger); e != nil {
 		fmt.Fprintln(os.Stderr, e)
 		os.Exit(1)
 	}
 }
-func run(dir string) error {
+func run(dir, ledger string) error {
 	manifest, e := os.ReadFile("provenance/development.json")
 	if e != nil {
 		return e
@@ -213,6 +215,51 @@ func run(dir string) error {
 	if e != nil {
 		return e
 	}
+	if ledger != "" {
+		b, e := json.Marshal(result)
+		if e != nil {
+			return e
+		}
+		if e = os.WriteFile(ledger, append(b, '\n'), 0600); e != nil {
+			return e
+		}
+	}
+	var long, short, stops, targets, gaps, large, verylarge int
+	var feeR, slipR, fundingR float64
+	distances := make([]float64, 0, len(result.Trades))
+	for _, t := range result.Trades {
+		if t.Direction == 1 {
+			long++
+		} else {
+			short++
+		}
+		if t.ExitReason == "stop" {
+			stops++
+			raw := t.Exit / (1 - float64(t.Direction)*ohlcv.Slippage)
+			if (t.Direction == 1 && raw < t.Stop) || (t.Direction == -1 && raw > t.Stop) {
+				gaps++
+			}
+		} else if t.ExitReason == "target" {
+			targets++
+		}
+		f, sl, fu := t.Fees/t.Risk, t.SlippageCost/t.Risk, t.FundingCost/t.Risk
+		feeR += f
+		slipR += sl
+		fundingR += fu
+		costs := f + sl + fu
+		if costs > 0.5 {
+			large++
+		}
+		if costs > 1 {
+			verylarge++
+		}
+		distances = append(distances, 10000*t.Risk/t.Entry)
+	}
+	if len(distances) > 0 {
+		sort.Float64s(distances)
+		q := func(p float64) float64 { return distances[int(math.Ceil(p*float64(len(distances))))-1] }
+		fmt.Printf("decomposition long=%d short=%d stops=%d targets=%d stop_gaps=%d cost_over_halfR=%d cost_over_1R=%d mean_fee_R=%.8f mean_slippage_R=%.8f mean_funding_R=%.8f initial_risk_bps_p10=%.8f median=%.8f p90=%.8f\n", long, short, stops, targets, gaps, large, verylarge, feeR/float64(len(distances)), slipR/float64(len(distances)), fundingR/float64(len(distances)), q(.1), q(.5), q(.9))
+	}
 	var net, gross, fees, slip, funding, positive, negative float64
 	wealth, peak, maxDrawdown := 100.0, 100.0, 0.0
 	insolvent := false
@@ -248,6 +295,11 @@ func run(dir string) error {
 		days[d].Count++
 	}
 	ci, err := ohlcv.Bootstrap(days)
+	for _, length := range []int{3, 14, 28} {
+		sensitivity, e := ohlcv.BootstrapBlocks(days, length)
+		fmt.Printf("descriptive_block_%d=%+v error=%v ", length, sensitivity, e)
+	}
+	fmt.Println()
 	if insolvent {
 		fmt.Print("max_drawdown=undefined_nonpositive_equity ")
 	} else {

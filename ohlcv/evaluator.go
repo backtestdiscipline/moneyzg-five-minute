@@ -136,8 +136,7 @@ func Evaluate(bars []Bar, funding []Funding, start, end int64) (Result, error) {
 				// If an intrabar exit and settlement coexist, order is unknown.
 				// Select the adverse funding outcome, and disclose ambiguity.
 				cost, ambiguous := fundingOutcome(charge, ok)
-				pos.trade.FundingAmbiguous = ambiguous
-				pos.funding += cost
+				applyFunding(pos, cost, ambiguous)
 			}
 			if ok {
 				finish(&pos.trade, pos.rawEntry, raw, pos.funding, b.Time, reason, amb)
@@ -197,6 +196,11 @@ func enter(b Bar, s signal) *position {
 		return nil
 	}
 	return &position{trade: Trade{Direction: s.dir, EntryTime: b.Time, Entry: price, Stop: s.stop, Target: target, Risk: risk}, rawEntry: b.Open}
+}
+
+func applyFunding(p *position, cost float64, ambiguous bool) {
+	p.funding += cost
+	p.trade.FundingAmbiguous = p.trade.FundingAmbiguous || ambiguous
 }
 
 func fundingOutcome(charge float64, intrabarExit bool) (float64, bool) {
