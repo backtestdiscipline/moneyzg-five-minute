@@ -1,3 +1,8 @@
+> Inference update: the seven-day primary proposal below is superseded for
+> future review by the validated candidate in `inference-validation.md`; the
+> old proposal is retained here as the research history. The draft platform
+> contract is still blocked and must not be frozen until explicitly revised.
+
 # OHLCV evaluation and freeze proposal — unfrozen
 
 ## Scope and source

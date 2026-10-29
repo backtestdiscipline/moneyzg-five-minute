@@ -1,13 +1,11 @@
 # Status
 
-- State: exploratory with blocked draft platform records; no freeze, holdout
+- State: exploratory, blocked draft platform records; no freeze, holdout
   acquisition, sealed run or result.
-- Independent reconstruction reconciled all 1,959 development trades. A
-  funding-ambiguity flag defect was fixed; development P&L was unchanged.
-- Classification: STATISTICAL_VALIDATION_FAILED. Synthetic persistent dependence
-  exposed substantial undercoverage in the proposed seven-day bootstrap.
-- Platform manifest and spec are drafts only; holdout sources are post-freeze
-  declarations and remain absent. Platform execution and semantic replay remain
-  unimplemented. See `explore/final-development-audit.md`.
-- Next: redesign and independently validate inference and complete the study's
-  platform run/verification integration before seeking freeze approval.
+- Classification: INFERENCE_VALIDATED for six prespecified synthetic scenarios;
+  five-batch ratio inference remains conditional on weak dependence and stability.
+  See `explore/inference-validation.md`; old 7-day failure is retained.
+- The 2024 first-360-day batch diagnostic is exploratory. No 2025 holdout or
+  warm-up observations were acquired or examined.
+- Next: review the proposed inference and update draft contract in a future
+  milestone; platform run and semantic verification integration remain open.

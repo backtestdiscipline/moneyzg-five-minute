@@ -294,6 +294,12 @@ func run(dir, ledger string) error {
 		days[d].Net += t.NetR
 		days[d].Count++
 	}
+	if len(days) >= 360 {
+		mean360, ci360, e360 := ohlcv.DevelopmentBatchRatio(days[:360])
+		fmt.Printf("exploratory_first_360_days_batch72_mean=%.8f ci=%+v error=%v\n", mean360, ci360, e360)
+		legacy360, legacyErr := ohlcv.Bootstrap(days[:360])
+		fmt.Printf("exploratory_first_360_days_legacy_block7=%+v error=%v\n", legacy360, legacyErr)
+	}
 	ci, err := ohlcv.Bootstrap(days)
 	for _, length := range []int{3, 14, 28} {
 		sensitivity, e := ohlcv.BootstrapBlocks(days, length)
