@@ -235,8 +235,8 @@ func run(dir, ledger string) error {
 		}
 		if t.ExitReason == "stop" {
 			stops++
-			raw := t.Exit / (1 - float64(t.Direction)*ohlcv.Slippage)
-			if (t.Direction == 1 && raw < t.Stop) || (t.Direction == -1 && raw > t.Stop) {
+			stopFill := t.Stop * (1 - float64(t.Direction)*ohlcv.Slippage)
+			if (t.Direction == 1 && t.Exit < stopFill) || (t.Direction == -1 && t.Exit > stopFill) {
 				gaps++
 			}
 		} else if t.ExitReason == "target" {

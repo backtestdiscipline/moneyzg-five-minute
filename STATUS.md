@@ -1,11 +1,11 @@
 # Status
 
-- State: exploratory, blocked draft platform records; no freeze, holdout
-  acquisition, sealed run or result.
-- Classification: INFERENCE_VALIDATED for six prespecified synthetic scenarios;
-  five-batch ratio inference remains conditional on weak dependence and stability.
-  See `explore/inference-validation.md`; old 7-day failure is retained.
-- The 2024 first-360-day batch diagnostic is exploratory. No 2025 holdout or
-  warm-up observations were acquired or examined.
-- Next: review the proposed inference and update draft contract in a future
-  milestone; platform run and semantic verification integration remain open.
+- State: exploratory and unfrozen; no holdout acquisition, scientific run or seal.
+- Classification: READY_FOR_FREEZE_REVIEW. The candidate contract and lifecycle
+  verification are described in `explore/freeze-review.md`; operator approval is
+  required before freezing and separately authorizing holdout acquisition.
+- The independent replay verifies the complete ledger and primary inference;
+  descriptive summaries share a helper and are not independently implemented.
+- The 2024 360-day calculation is exploratory; the 2025 365-day calculation
+  remains untouched. The failed seven-day bootstrap remains documented.
+- Publication requires a separate licensing and attribution review.
