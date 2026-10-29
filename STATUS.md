@@ -1,6 +1,7 @@
 # Status
 
-- State: frozen; holdout sources acquired and independently prechecked, with no
-  scientific run yet. `provenance/holdout-acquisition.json` records identities.
-- Evaluation is authorized under the frozen contract. Publication requires a
-  separate licensing and attribution review.
+- Frozen holdout run `20261029T132412Z-59e969df48e1`: COMPLETE;
+  NEGATIVE_EXPECTANCY_SUPPORTED under the frozen modeled assumptions.
+- Platform integrity and independent ledger/inference semantic replay PASS.
+- See `reports/holdout-result.md`; raw source bytes remain ignored. Separate
+  attribution and licensing review is required before publication.
