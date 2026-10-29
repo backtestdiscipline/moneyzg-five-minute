@@ -1,0 +1,216 @@
+{
+  "version": "holdout-acquisition/v1",
+  "description": "Binance Vision and public funding history, acquired after approved freeze; raw provider files remain ignored.",
+  "sources": [
+    {
+      "path": "data/holdout/BTCUSDT-5m-2024-12-30.zip",
+      "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12-30.zip",
+      "acquired_at": "2026-10-29T13:23:23.229744+00:00",
+      "size": 14018,
+      "sha256": "5791c3bb83fe44097955aa8497a60ab60035b34bd181d49e4ce61b8c1e5a7088"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2024-12-30.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12-30.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:24.245349+00:00",
+      "size": 92,
+      "sha256": "8054d09b694929fcd0e72a5acaf7e3501c03362a33d28de6065aab1a56a72297"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2024-12-31.zip",
+      "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12-31.zip",
+      "acquired_at": "2026-10-29T13:23:24.807118+00:00",
+      "size": 14036,
+      "sha256": "bd485da208cf0c881bd41d1a1a714a6dbb496dcbfd2dfa8e30f734c920651674"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2024-12-31.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/daily/klines/BTCUSDT/5m/BTCUSDT-5m-2024-12-31.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:25.360506+00:00",
+      "size": 92,
+      "sha256": "b6e7605c38df367aeb09c5e9c6331f3e880a1e43076cfd49b8062bd3b8497aa0"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-01.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-01.zip",
+      "acquired_at": "2026-10-29T13:23:26.817352+00:00",
+      "size": 412755,
+      "sha256": "0c99422d64fa3cc58564cf77969fc5a96d6f44783c79ecfcf94b103753bf7570"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-01.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-01.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:27.818833+00:00",
+      "size": 89,
+      "sha256": "3451cadbf80e61819d7e86ca1ae43b9d12d97c34ac6e5abf83ed58b3bd4194f0"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-02.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-02.zip",
+      "acquired_at": "2026-10-29T13:23:29.129117+00:00",
+      "size": 370482,
+      "sha256": "fdd6fb92b75bae5c02dd583b5be44ca6673d1807ce4b0c08160d3c5cf7677a46"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-02.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-02.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:29.682784+00:00",
+      "size": 89,
+      "sha256": "f5d77fe51537188378eab327ce4a81482fd3844534f987d48ab46b76ae3b02ba"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-03.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-03.zip",
+      "acquired_at": "2026-10-29T13:23:30.914786+00:00",
+      "size": 412650,
+      "sha256": "46f83773b9cec38a09be429727a5a300ccca6d11c8e8ca5fa9545fad6eda131f"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-03.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-03.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:31.479417+00:00",
+      "size": 89,
+      "sha256": "03a8c6b263a29e625a42c35fa2f63cf5da6125c6d732346b202595a40f0973f3"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-04.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-04.zip",
+      "acquired_at": "2026-10-29T13:23:32.687327+00:00",
+      "size": 397231,
+      "sha256": "9eda69fd858e9ced7e72cfbb75bffe34458763c37c8ee73910e572b4baba21ed"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-04.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-04.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:33.255929+00:00",
+      "size": 89,
+      "sha256": "5d85d3106ce19949d73235e5716d8628938ad2178c135dc358738159dbead20a"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-05.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-05.zip",
+      "acquired_at": "2026-10-29T13:23:34.979461+00:00",
+      "size": 410658,
+      "sha256": "073da284f178e72777abbfbcf79faa99fcf77bd69c4a678938abbf6cd7d14f5b"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-05.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-05.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:35.534722+00:00",
+      "size": 89,
+      "sha256": "f5cc75b8d04622df3aa7188b7cc999605951e2d3a418ecf9c1303854ede45a4d"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-06.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-06.zip",
+      "acquired_at": "2026-10-29T13:23:36.763094+00:00",
+      "size": 393987,
+      "sha256": "da39c04e24a90c87406b9030e1aaf376655ad59d4bc0496f38e4162a9babf514"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-06.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-06.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:37.304108+00:00",
+      "size": 89,
+      "sha256": "066fe426b3775122fe716b4c54c5f3eb89ec4cfb8f0e0694b419167d08f338df"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-07.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-07.zip",
+      "acquired_at": "2026-10-29T13:23:38.966196+00:00",
+      "size": 405712,
+      "sha256": "2cea4750d51d9c064d674ec8d0d8d1f39448960284272fdc74698562c873bf0f"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-07.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-07.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:39.517274+00:00",
+      "size": 89,
+      "sha256": "d2d0e1ea595e2d7546684f300c91e805edb19dfe7f1021776bc13542a42255fd"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-08.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-08.zip",
+      "acquired_at": "2026-10-29T13:23:40.730921+00:00",
+      "size": 405889,
+      "sha256": "7f78f6f88ae1946f8bd8312a37d1d74b24e24d6b13bc37d2909ad7c8c0c7e9ae"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-08.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-08.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:41.296414+00:00",
+      "size": 89,
+      "sha256": "af8b7449b8cb05b2e870411402bc817e6f1dd6ee3215beadbcdec8e01108fd81"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-09.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-09.zip",
+      "acquired_at": "2026-10-29T13:23:42.534931+00:00",
+      "size": 388679,
+      "sha256": "dbfb8bc2f9343107c7a702acd6919d77060a8f7ea4b25359c71e5fc018a85209"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-09.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-09.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:43.386694+00:00",
+      "size": 89,
+      "sha256": "62fd0638bed8ef6851fd9a19cae5e8987f3ddacce375f4ffd19a1e2e642aa11b"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-10.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-10.zip",
+      "acquired_at": "2026-10-29T13:23:44.839333+00:00",
+      "size": 412617,
+      "sha256": "fab262ca4318f8f65164ae33a020458439adc6f7bc2e59bbfce1886118d05a48"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-10.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-10.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:45.386130+00:00",
+      "size": 89,
+      "sha256": "2ecef87c010b946f3031c6f4d96f517849e9c7b637074528c2b6cadff62a0077"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-11.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-11.zip",
+      "acquired_at": "2026-10-29T13:23:46.605110+00:00",
+      "size": 398908,
+      "sha256": "2759d4be0fe68cc2be3d4d91940fcd95abc69f0c31f25d0b6cb5e0629c625d2d"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-11.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-11.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:47.153870+00:00",
+      "size": 89,
+      "sha256": "395d40867c8c6fb6c56d176d8a20d0d86cb6a822dbc859f913901be6e5591f35"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-12.zip",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-12.zip",
+      "acquired_at": "2026-10-29T13:23:49.025950+00:00",
+      "size": 404647,
+      "sha256": "0e923a3d2ac4f6711d8c841220f4e5d2e479c1bdb40b41515eb250e16808304f"
+    },
+    {
+      "path": "data/holdout/BTCUSDT-5m-2025-12.zip.CHECKSUM",
+      "url": "https://data.binance.vision/data/futures/um/monthly/klines/BTCUSDT/5m/BTCUSDT-5m-2025-12.zip.CHECKSUM",
+      "acquired_at": "2026-10-29T13:23:49.578311+00:00",
+      "size": 89,
+      "sha256": "cdd61783278c5db12a20947adb8197741d8003182a639eab6ffe0a973d2ac204"
+    },
+    {
+      "path": "data/holdout/funding-1.json",
+      "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1735689600000&endTime=1751327999999&limit=1000",
+      "acquired_at": "2026-10-29T13:23:14.096480+00:00",
+      "size": 68716,
+      "sha256": "682f3f61878fc545abe87229301972675b491fa090510e9f40dbd762e75d6751"
+    },
+    {
+      "path": "data/holdout/funding-2.json",
+      "url": "https://fapi.binance.com/fapi/v1/fundingRate?symbol=BTCUSDT&startTime=1751328000000&endTime=1767225599999&limit=1000",
+      "acquired_at": "2026-10-29T13:23:14.890773+00:00",
+      "size": 70016,
+      "sha256": "21c884264113b380fdba80f5ea254c54025ed8075352ec10c2688bbfa3b9466d"
+    }
+  ]
+}
